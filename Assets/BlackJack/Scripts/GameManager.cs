@@ -44,9 +44,9 @@ public class GameManager : MonoBehaviour
         }
 
         // UI 버튼 리스너 등록 (코드로 하는 방법)
-        hitButton.onClick.AddListener(() => Hit());
+        /*hitButton.onClick.AddListener(() => Hit());
         standButton.onClick.AddListener(() => Stand());
-        restartButton.onClick.AddListener(() => StartGame());
+        restartButton.onClick.AddListener(() => StartGame());*/
 
         StartGame();
     }
@@ -77,6 +77,9 @@ public class GameManager : MonoBehaviour
         DealCardToDealer(false);
 
         UpdateScores();
+
+        // 게임 시작 직후 블랙잭 상황인지 확인
+        CheckForBlackjack();
     }
 
     // 플레이어에게 카드 분배
@@ -144,29 +147,57 @@ public class GameManager : MonoBehaviour
         DealCardToPlayer(); // 기존 로직을 이 함수 호출로 대체
         UpdateScores();
 
-        if (CalculateHandValue(playerHand) > 21)
+        int playerScore = CalculateHandValue(playerHand);
+
+        // 플레이어 점수가 21점인지 확인
+        if (playerScore == 21)
+        {
+            EndGame("Player Wins with 21!");
+        }
+        // 플레이어 점수가 21점을 초과했는지 확인 (버스트)
+        else if (playerScore > 21)
         {
             EndGame("Player Busts! Dealer Wins.");
         }
+        // 21점도 아니고 버스트도 아니면 게임 계속 진행
     }
 
     public void Stand()
     {
+        // 1. 버튼 비활성화
         hitButton.interactable = false;
         standButton.interactable = false;
 
-        // 딜러의 숨겨진 카드 공개
-        dealerCardObjects[1].GetComponent<SpriteRenderer>().sprite = GetCardSprite(dealerHand[1]);
-        UpdateScores(); // 공개 후 점수 다시 업데이트
+        // 2. 딜러의 숨겨진 카드 공개
+        if (dealerCardObjects.Count >= 2)
+        {
+            dealerCardObjects[1].GetComponent<SpriteRenderer>().sprite = GetCardSprite(dealerHand[1]);
+        }
 
-        // 딜러 턴
+        // 3. 딜러의 전체 점수를 계산하고 UI 업데이트
+        UpdateScores();
+
+        // 4. 딜러 점수가 17 미만이면 계속해서 카드를 받음
         while (CalculateHandValue(dealerHand) < 17)
         {
-            DealCardToDealer(true); // 딜러는 공개된 카드를 받음
+            DealCardToDealer(true);
             UpdateScores();
         }
 
+        // 5. 최종 승자 판정
         DetermineWinner();
+    }
+
+    void CheckForBlackjack()
+    {
+        // 오직 플레이어의 핸드만 확인
+        if (playerHand.Count == 2 && CalculateHandValue(playerHand) == 21)
+        {
+            // 플레이어가 블랙잭이면 즉시 게임 종료
+            EndGame("Blackjack! Player Wins.");
+        }
+        // 딜러가 블랙잭인지는 여기에서 확인하지 않습니다.
+        // 플레이어가 블랙잭이 아니면 게임은 정상적으로 계속됩니다.
     }
 
     void DetermineWinner()
@@ -198,8 +229,23 @@ public class GameManager : MonoBehaviour
 
     void UpdateScores()
     {
+        // 플레이어 점수는 항상 전체 핸드를 기준으로 계산
         playerScoreText.text = "Player: " + CalculateHandValue(playerHand);
-        dealerScoreText.text = "Dealer: " + CalculateHandValue(dealerHand);
+
+        // 딜러 점수는 상황에 따라 다르게 계산
+        if (standButton.interactable) // 아직 플레이어의 턴일 때 (Stand 버튼이 활성화 상태)
+        {
+            // 딜러의 첫 번째 카드(공개된 카드)의 점수만 표시
+            if (dealerHand.Count > 0)
+            {
+                dealerScoreText.text = "Dealer: " + dealerHand[0].value;
+            }
+        }
+        else // 플레이어가 Stand를 눌러 턴이 끝났을 때
+        {
+            // 딜러의 전체 핸드를 기준으로 점수 계산
+            dealerScoreText.text = "Dealer: " + CalculateHandValue(dealerHand);
+        }
     }
 
     int CalculateHandValue(List<Card> hand)

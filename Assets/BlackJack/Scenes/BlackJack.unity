@@ -423,7 +423,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 20}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &567578918
 MonoBehaviour:
@@ -1456,7 +1456,7 @@ MonoBehaviour:
   cardPrefab: {fileID: 7591253653187086969, guid: 1fe37c3199467c54db909f3ef114bef2, type: 3}
   playerHandTransform: {fileID: 1100892665}
   dealerHandTransform: {fileID: 1986829615}
-  cardSpacing: 0.5
+  cardSpacing: 1
 --- !u!4 &1972355531
 Transform:
   m_ObjectHideFlags: 0
