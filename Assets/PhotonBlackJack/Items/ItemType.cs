@@ -25,5 +25,10 @@ public enum ItemType
     /// </summary>
     CrystalBall = 3,
 
+    /// <summary>
+    /// 다음 히트 카드를 상대방에게 보이지 않게 하는 '편지봉투' 아이템입니다.
+    /// </summary>
+    Envelope = 4,
+
     // 나중에 새로운 아이템을 추가할 때, 아래에 이어서 추가하시면 됩니다.
 }

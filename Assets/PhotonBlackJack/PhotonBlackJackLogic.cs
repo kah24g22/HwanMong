@@ -13,6 +13,7 @@ public class PhotonBlackJackLogic
     public Deck Deck { get { return m_deck; } } // Deck 접근자 추가
 
     private PlayerTurn m_turn;
+    public bool IsNextCardHidden { get; set; } // 편지봉투 아이템을 위한 플래그
 
     public BlackJackPlayer Player1 { get { return m_player1; } }
     public BlackJackPlayer Player2 { get { return m_player2; } }
@@ -70,7 +71,10 @@ public class PhotonBlackJackLogic
     {
         BlackJackPlayer currentPlayer = (m_turn == PlayerTurn.Player1) ? m_player1 : m_player2;
         
-        DealCard(currentPlayer, true);
+        bool faceUp = !IsNextCardHidden; // 플래그에 따라 isFaceUp 결정
+        DealCard(currentPlayer, faceUp);
+        IsNextCardHidden = false; // 플래그 초기화
+
         SwitchTurnOrEndGame();
 
         currentPlayer.BlackJackCheck();
