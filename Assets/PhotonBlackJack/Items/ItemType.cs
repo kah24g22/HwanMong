@@ -15,5 +15,10 @@ public enum ItemType
     /// </summary>
     Match = 1,
 
+    /// <summary>
+    /// 다음 턴 상대방의 Stand 행동을 금지하는 '자물쇠' 아이템입니다.
+    /// </summary>
+    Lock = 2,
+
     // 나중에 새로운 아이템을 추가할 때, 아래에 이어서 추가하시면 됩니다.
 }

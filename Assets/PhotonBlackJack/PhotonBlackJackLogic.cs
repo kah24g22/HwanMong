@@ -85,6 +85,15 @@ public class PhotonBlackJackLogic
     public void Stand()
     {
         BlackJackPlayer currentPlayer = (m_turn == PlayerTurn.Player1) ? m_player1 : m_player2;
+
+        // 스탠드 금지 상태인지 확인
+        if (currentPlayer.IsStandDisabled)
+        {
+            Debug.Log($"{currentPlayer.Player.NickName}님은 자물쇠 효과로 인해 Stand를 할 수 없습니다!");
+            // (추가) 여기에 사용자에게 알림을 주는 UI 로직을 연결할 수 있습니다.
+            return; // 행동 취소
+        }
+
         currentPlayer.IsTurnOn = false;
         SwitchTurnOrEndGame();
     }

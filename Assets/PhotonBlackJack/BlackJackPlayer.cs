@@ -7,6 +7,7 @@ public class BlackJackPlayer : MonoBehaviour
     private bool m_isBlackJack = false;
     private Hand m_hand;
     private int m_life = 3; // 라이프 변수 추가됨
+    public bool IsStandDisabled { get; set; } // 스탠드 금지 상태 변수 추가
 
 
 
@@ -32,6 +33,7 @@ public class BlackJackPlayer : MonoBehaviour
         m_isBust = false;
         IsTurnOn = true;
         Hand.Clear();
+        IsStandDisabled = false; // 라운드 시작 시 스탠드 금지 상태 초기화
     }
 
     public void BustCheck()
