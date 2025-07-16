@@ -30,5 +30,15 @@ public enum ItemType
     /// </summary>
     Envelope = 4,
 
+    /// <summary>
+    /// 현재 라이프를 1 증가시키는 '저울' 아이템입니다.
+    /// </summary>
+    Scale = 5,
+
+    /// <summary>
+    /// 즉시 새 라운드를 시작하는 '모래시계' 아이템입니다.
+    /// </summary>
+    Hourglass = 6,
+
     // 나중에 새로운 아이템을 추가할 때, 아래에 이어서 추가하시면 됩니다.
 }

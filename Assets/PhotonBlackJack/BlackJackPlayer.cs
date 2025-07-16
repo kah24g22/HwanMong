@@ -56,5 +56,14 @@ public class BlackJackPlayer : MonoBehaviour
         m_life--;
     }
 
+    // 라이프 증가 메서드 추가됨
+    public void IncreaseLife()
+    {
+        if (m_life < m_maxLife)
+        {
+            m_life++;
+        }
+    }
+
 }
 
