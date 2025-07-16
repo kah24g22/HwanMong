@@ -7,21 +7,21 @@ using UnityEngine.UI;
 
 public class PhotonBlackJackManager : MonoBehaviour
 {
-    private PhotonBlackJackLogic gameLogic; // ÇÙ½É °ÔÀÓ ·ÎÁ÷ ÀÎ½ºÅÏ½º
+    private PhotonBlackJackLogic gameLogic; // ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½
 
     [SerializeField] BlackJackPlayer m_player1;
     [SerializeField] BlackJackPlayer m_player2;
 
-    // UI ¿ä¼Ò ¿¬°á
+    // UI ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     [SerializeField] private TextMeshProUGUI player1ScoreText;
     [SerializeField] private TextMeshProUGUI player2ScoreText;
     [SerializeField] private TextMeshProUGUI resultText;
-    [SerializeField] private TextMeshProUGUI turnText; // ÅÏ Ç¥½Ã UI Ãß°¡
+    [SerializeField] private TextMeshProUGUI turnText; // ï¿½ï¿½ Ç¥ï¿½ï¿½ UI ï¿½ß°ï¿½
     [SerializeField] private Button hitButton;
     [SerializeField] private Button standButton;
     [SerializeField] private Button restartButton;
 
-    // ½Ã°¢È­
+    // ï¿½Ã°ï¿½È­
     [Header("Card Visuals")]
     [SerializeField] private GameObject cardPrefab;
     [SerializeField] private Transform player1HandTransform;
@@ -33,14 +33,14 @@ public class PhotonBlackJackManager : MonoBehaviour
 
     private Dictionary<string, Sprite> cardSprites;
 
-    void Awake() // Start ´ë½Å Awake¿¡¼­ ÃÊ±âÈ­ÇÏ¿© ´Ù¸¥ ½ºÅ©¸³Æ®º¸´Ù ¸ÕÀú ½ÇÇàµÇµµ·Ï ÇÒ ¼ö ÀÖ½À´Ï´Ù.
+    void Awake() // Start ï¿½ï¿½ï¿½ Awakeï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½Ï¿ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Çµï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½.
     {
         gameLogic = new PhotonBlackJackLogic(m_player1, m_player2);
         //gameLogic.OnCardDealt += HandleCardDealt;
         gameLogic.OnGameEnded += HandleGameEnded;
-        gameLogic.OnTurnChanged += HandleTurnChanged; // ÅÏ º¯°æ ÀÌº¥Æ® ±¸µ¶
+        gameLogic.OnTurnChanged += HandleTurnChanged; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 
-        // UI ¹öÆ° ¸®½º³Ê µî·Ï
+        // UI ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         hitButton.onClick.AddListener(() => Hit());
         standButton.onClick.AddListener(() => Stand());
         restartButton.onClick.AddListener(() => StartGame());
@@ -48,7 +48,7 @@ public class PhotonBlackJackManager : MonoBehaviour
 
     void Start()
     {
-        // ½ºÇÁ¶óÀÌÆ® ½ÃÆ®¿¡¼­ ¸ğµç Ä«µå ¾Õ¸é ·Îµå
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ ï¿½Õ¸ï¿½ ï¿½Îµï¿½
         cardSprites = new Dictionary<string, Sprite>();
         Sprite[] sprites = Resources.LoadAll<Sprite>("Sprites/Cards/CuteCards");
 
@@ -62,20 +62,20 @@ public class PhotonBlackJackManager : MonoBehaviour
 
     public void StartGame()
     {
-        // ÀÌÀü °ÔÀÓÀÇ Ä«µå ¿ÀºêÁ§Æ®µé ÆÄ±«
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ä±ï¿½
         foreach (GameObject card in player1CardObjects) Destroy(card);
         foreach (GameObject card in player2CardObjects) Destroy(card);
         player1CardObjects.Clear();
         player2CardObjects.Clear();
 
         resultText.text = "";
-        turnText.text = ""; // ÅÏ ÅØ½ºÆ® ÃÊ±âÈ­
+        turnText.text = ""; // ï¿½ï¿½ ï¿½Ø½ï¿½Æ® ï¿½Ê±ï¿½È­
         hitButton.interactable = true;
         standButton.interactable = true;
         restartButton.gameObject.SetActive(false);
 
-        //gameLogic.StartGame(); // ÇÙ½É °ÔÀÓ ·ÎÁ÷ ½ÃÀÛ
-        UpdateScores(); // ÃÊ±â Á¡¼ö ¾÷µ¥ÀÌÆ®
+        //gameLogic.StartGame(); // ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        UpdateScores(); // ï¿½Ê±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
     }
 
     private void HandleCardDealt(Card card, Hand hand, bool isFaceUp)
@@ -107,7 +107,7 @@ public class PhotonBlackJackManager : MonoBehaviour
         {
             newCardObject.GetComponent<SpriteRenderer>().sprite = cardSprites["Card_Back"];
         }
-        UpdateScores(); // Ä«µå°¡ ºĞ¹èµÉ ¶§¸¶´Ù Á¡¼ö ¾÷µ¥ÀÌÆ®
+        UpdateScores(); // Ä«ï¿½å°¡ ï¿½Ğ¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
     }
 
     private void HandleGameEnded(string message)
@@ -117,7 +117,7 @@ public class PhotonBlackJackManager : MonoBehaviour
         hitButton.interactable = false;
         standButton.interactable = false;
         restartButton.gameObject.SetActive(true);
-        UpdateScores(); // °ÔÀÓ Á¾·á ½Ã µô·¯ Ä«µå ¸ğµÎ °ø°³
+        UpdateScores(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
     private void HandleTurnChanged(PlayerTurn currentPlayer)
@@ -130,8 +130,8 @@ public class PhotonBlackJackManager : MonoBehaviour
         player1ScoreText.text = "Player1: " + gameLogic.Player1.Hand.CalculateValue();
         player2ScoreText.text = "Player2: " + gameLogic.Player2.Hand.CalculateValue();
 
-        // ÇöÀç ÅÏ ÇÃ·¹ÀÌ¾î °­Á¶ ¶Ç´Â UI ¾÷µ¥ÀÌÆ® ·ÎÁ÷ Ãß°¡ °¡´É
-        // ¿¹: if (blackjackGame.CurrentPlayer == BlackjackGame.PlayerTurn.Player1) { /* Player1 UI °­Á¶ */ }
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ UI ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // ï¿½ï¿½: if (blackjackGame.CurrentPlayer == BlackjackGame.PlayerTurn.Player1) { /* Player1 UI ï¿½ï¿½ï¿½ï¿½ */ }
     }
 
     Sprite GetCardSprite(Card card)
@@ -143,7 +143,7 @@ public class PhotonBlackJackManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"½ºÇÁ¶óÀÌÆ®¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù: {spriteName}");
+            Debug.LogError($"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½: {spriteName}");
             return null;
         }
     }
@@ -155,6 +155,43 @@ public class PhotonBlackJackManager : MonoBehaviour
     public void Stand()
     {
         gameLogic.Stand();
+    }
+
+    public void UseItem(ItemType itemType, BlackJackPlayer user)
+    {
+        IItemEffect effect = null;
+        switch (itemType)
+        {
+            case ItemType.Envelope:
+                effect = new EnvelopeEffect();
+                break;
+            case ItemType.Scale:
+                effect = new ScaleEffect();
+                break;
+            case ItemType.Hourglass:
+                effect = new HourglassEffect();
+                break;
+            // ë‹¤ë¥¸ ì•„ì´í…œë“¤ë„ ì—¬ê¸°ì— ì¶”ê°€
+            case ItemType.Match:
+                effect = new MatchEffect();
+                break;
+            case ItemType.Lock:
+                effect = new LockEffect();
+                break;
+            case ItemType.CrystalBall:
+                effect = new CrystalBallEffect();
+                break;
+        }
+
+        if (effect != null)
+        {
+            effect.Execute(gameLogic, user);
+            user.RemoveItem(itemType); // ì•„ì´í…œ ì‚¬ìš© í›„ ì¸ë²¤í† ë¦¬ì—ì„œ ì œê±°
+        }
+        else
+        {
+            Debug.LogWarning($"Unknown item type: {itemType}");
+        }
     }
 
 }
