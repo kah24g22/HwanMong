@@ -19,6 +19,15 @@ public class Hand
         Cards.Clear();
     }
 
+    // 특정 카드를 손패에서 제거하는 메서드 추가
+    public void RemoveCard(Card card)
+    {
+        if (Cards.Contains(card))
+        {
+            Cards.Remove(card);
+        }
+    }
+
     public int CalculateValue()
     {
         int value = 0;

@@ -1,0 +1,19 @@
+// 파일 경로: D:/School/Major/GameJam1/HwanMong/Assets/PhotonBlackJack/Items/ItemType.cs
+
+/// <summary>
+/// 게임에 존재하는 아이템의 종류를 정의하는 열거형입니다.
+/// </summary>
+public enum ItemType
+{
+    /// <summary>
+    /// 아무 아이템도 아님을 나타냅니다. (기본값)
+    /// </summary>
+    None = 0,
+
+    /// <summary>
+    /// 상대방의 뒤집힌 카드 중 하나를 랜덤하게 제거하는 '성냥' 아이템입니다.
+    /// </summary>
+    Match = 1,
+
+    // 나중에 새로운 아이템을 추가할 때, 아래에 이어서 추가하시면 됩니다.
+}
