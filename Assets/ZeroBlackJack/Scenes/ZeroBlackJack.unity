@@ -486,10 +486,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 162ae0085188c354381f0e2ece35cb12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  replayButtonObject: {fileID: 78412087}
   hands1: {fileID: 1237236431}
   hands2: {fileID: 1108558314}
   winnerText: {fileID: 1717058210}
+  isPlaying: 0
 --- !u!114 &198416951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,10 +514,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1fcae7e803bdbd41b76a51268cade87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winnerChecker: {fileID: 198416950}
   hands1: {fileID: 1237236433}
   hands2: {fileID: 1108558315}
-  hit: {fileID: 902608751}
-  stand: {fileID: 1998942159}
+  hitObject: {fileID: 0}
+  standObject: {fileID: 0}
+  replayButtonObject: {fileID: 0}
   turnText: {fileID: 1482794661}
 --- !u!1 &236904809
 GameObject:
@@ -1188,19 +1190,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 902608752}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1237236433}
-        m_TargetAssemblyTypeName: Hands, Assembly-CSharp
-        m_MethodName: HitButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &902608752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1269,6 +1259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deck: {fileID: 198416951}
+  turnChecker: {fileID: 0}
   cardPrefab: {fileID: 3241333330055992965, guid: 85a7e685f4cd342479f00e514cb0bb65, type: 3}
   handsPosition:
   - {fileID: 1689299193}
@@ -1487,6 +1478,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deck: {fileID: 198416951}
+  turnChecker: {fileID: 0}
   cardPrefab: {fileID: 3241333330055992965, guid: 85a7e685f4cd342479f00e514cb0bb65, type: 3}
   handsPosition:
   - {fileID: 1105376}
