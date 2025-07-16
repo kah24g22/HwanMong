@@ -277,7 +277,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Club_A
+      name: Club-Ace
       rect:
         serializedVersion: 2
         x: 4
@@ -299,11 +299,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Club_2
+      name: Club-Two
       rect:
         serializedVersion: 2
         x: 104
-        y: 437
+        y: 436
         width: 92
         height: 136
       alignment: 0
@@ -321,7 +321,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Club_3
+      name: Club-Three
       rect:
         serializedVersion: 2
         x: 204
@@ -343,7 +343,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Club_4
+      name: Club-Four
       rect:
         serializedVersion: 2
         x: 304
@@ -365,7 +365,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Club_5
+      name: Club-Five
       rect:
         serializedVersion: 2
         x: 404
@@ -387,7 +387,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Club_6
+      name: Club-Six
       rect:
         serializedVersion: 2
         x: 504
@@ -409,7 +409,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Club_7
+      name: Club-Seven
       rect:
         serializedVersion: 2
         x: 604
@@ -431,11 +431,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Club_8
+      name: Club-Eight
       rect:
         serializedVersion: 2
         x: 704
-        y: 437
+        y: 436
         width: 92
         height: 136
       alignment: 0
@@ -453,7 +453,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Club_9
+      name: Club-Nine
       rect:
         serializedVersion: 2
         x: 804
@@ -475,7 +475,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Club_10
+      name: Club-Ten
       rect:
         serializedVersion: 2
         x: 904
@@ -497,7 +497,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Club_J
+      name: Club-Jack
       rect:
         serializedVersion: 2
         x: 1004
@@ -519,7 +519,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Club_Q
+      name: Club-Queen
       rect:
         serializedVersion: 2
         x: 1104
@@ -541,11 +541,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Club_K
+      name: Club-King
       rect:
         serializedVersion: 2
         x: 1204
-        y: 437
+        y: 436
         width: 92
         height: 136
       alignment: 0
@@ -563,11 +563,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Card_Back
+      name: Back
       rect:
         serializedVersion: 2
-        x: 1403
-        y: 435
+        x: 1404
+        y: 436
         width: 92
         height: 136
       alignment: 0
@@ -585,7 +585,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Diamond_A
+      name: Diamond-Ace
       rect:
         serializedVersion: 2
         x: 4
@@ -607,7 +607,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Diamond_2
+      name: Diamond
       rect:
         serializedVersion: 2
         x: 104
@@ -629,11 +629,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Diamond_3
+      name: Diamond-Three
       rect:
         serializedVersion: 2
         x: 204
-        y: 294
+        y: 292
         width: 92
         height: 136
       alignment: 0
@@ -651,11 +651,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Diamond_4
+      name: Diamond-Four
       rect:
         serializedVersion: 2
         x: 304
-        y: 293
+        y: 292
         width: 92
         height: 136
       alignment: 0
@@ -673,11 +673,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Diamond_5
+      name: Diamon-Five
       rect:
         serializedVersion: 2
         x: 404
-        y: 293
+        y: 292
         width: 92
         height: 136
       alignment: 0
@@ -695,7 +695,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Diamond_6
+      name: Diamond-Six
       rect:
         serializedVersion: 2
         x: 504
@@ -717,7 +717,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Diamond_7
+      name: Diamond-Seven
       rect:
         serializedVersion: 2
         x: 604
@@ -739,11 +739,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Diamond_8
+      name: Diamond-Eight
       rect:
         serializedVersion: 2
         x: 704
-        y: 293
+        y: 292
         width: 92
         height: 136
       alignment: 0
@@ -761,11 +761,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Diamond_9
+      name: Diamond-Nine
       rect:
         serializedVersion: 2
         x: 804
-        y: 293
+        y: 292
         width: 92
         height: 136
       alignment: 0
@@ -783,7 +783,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Diamond_10
+      name: Diamond-Ten
       rect:
         serializedVersion: 2
         x: 904
@@ -805,7 +805,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Diamond_J
+      name: Diamond-Jack
       rect:
         serializedVersion: 2
         x: 1004
@@ -827,7 +827,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Diamond_Q
+      name: Diamond-Queen
       rect:
         serializedVersion: 2
         x: 1104
@@ -849,7 +849,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Diamond_K
+      name: Diamond-King
       rect:
         serializedVersion: 2
         x: 1204
@@ -871,11 +871,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spade_A
+      name: Spade-Ace
       rect:
         serializedVersion: 2
         x: 4
-        y: 149
+        y: 148
         width: 92
         height: 136
       alignment: 0
@@ -893,11 +893,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spade_2
+      name: Spade-Two
       rect:
         serializedVersion: 2
         x: 104
-        y: 150
+        y: 148
         width: 92
         height: 136
       alignment: 0
@@ -915,7 +915,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spade_3
+      name: Spade-Three
       rect:
         serializedVersion: 2
         x: 204
@@ -937,11 +937,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spade_4
+      name: Spade-Four
       rect:
         serializedVersion: 2
         x: 304
-        y: 149
+        y: 148
         width: 92
         height: 136
       alignment: 0
@@ -959,7 +959,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spade_5
+      name: Spade-Five
       rect:
         serializedVersion: 2
         x: 404
@@ -981,7 +981,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spade_6
+      name: Spade-Six
       rect:
         serializedVersion: 2
         x: 504
@@ -1003,7 +1003,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spade_7
+      name: Spade-Seven
       rect:
         serializedVersion: 2
         x: 604
@@ -1025,7 +1025,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spade_8
+      name: Spade-Eight
       rect:
         serializedVersion: 2
         x: 704
@@ -1047,7 +1047,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spade_9
+      name: Spade-Nine
       rect:
         serializedVersion: 2
         x: 804
@@ -1069,7 +1069,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spade_10
+      name: Spade-Ten
       rect:
         serializedVersion: 2
         x: 904
@@ -1091,7 +1091,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spade_J
+      name: Spade-Jack
       rect:
         serializedVersion: 2
         x: 1004
@@ -1113,11 +1113,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spade_Q
+      name: Spade-Queen
       rect:
         serializedVersion: 2
         x: 1104
-        y: 149
+        y: 148
         width: 92
         height: 136
       alignment: 0
@@ -1135,7 +1135,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spade_K
+      name: Spade-King
       rect:
         serializedVersion: 2
         x: 1204
@@ -1157,7 +1157,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Heart_A
+      name: Heart-Ace
       rect:
         serializedVersion: 2
         x: 4
@@ -1179,7 +1179,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Heart_2
+      name: Heart-Two
       rect:
         serializedVersion: 2
         x: 104
@@ -1201,11 +1201,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Heart_3
+      name: Heart-Three
       rect:
         serializedVersion: 2
         x: 204
-        y: 5
+        y: 4
         width: 92
         height: 136
       alignment: 0
@@ -1223,7 +1223,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Heart_4
+      name: Heart-Four
       rect:
         serializedVersion: 2
         x: 304
@@ -1245,7 +1245,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Heart_5
+      name: Heart-Five
       rect:
         serializedVersion: 2
         x: 404
@@ -1267,11 +1267,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Heart_6
+      name: Heart-Six
       rect:
         serializedVersion: 2
         x: 504
-        y: 5
+        y: 4
         width: 92
         height: 136
       alignment: 0
@@ -1289,11 +1289,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Heart_7
+      name: Heart-Seven
       rect:
         serializedVersion: 2
         x: 604
-        y: 5
+        y: 4
         width: 92
         height: 136
       alignment: 0
@@ -1311,11 +1311,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Heart_8
+      name: Heart-Eight
       rect:
         serializedVersion: 2
         x: 704
-        y: 5
+        y: 4
         width: 92
         height: 136
       alignment: 0
@@ -1333,11 +1333,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Heart_9
+      name: Heart-Nine
       rect:
         serializedVersion: 2
         x: 804
-        y: 5
+        y: 4
         width: 92
         height: 136
       alignment: 0
@@ -1355,7 +1355,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Heart_10
+      name: Heart-Ten
       rect:
         serializedVersion: 2
         x: 904
@@ -1377,7 +1377,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Heart_J
+      name: Heart-Jack
       rect:
         serializedVersion: 2
         x: 1004
@@ -1399,7 +1399,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Heart_Q
+      name: Heart-Queen
       rect:
         serializedVersion: 2
         x: 1104
@@ -1421,7 +1421,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Heart_K
+      name: Heart-King
       rect:
         serializedVersion: 2
         x: 1204
@@ -1458,20 +1458,20 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Card_Back: -1184517762903133153
-      Club_10: -5445514492879785236
-      Club_2: 4333138732080818910
-      Club_3: -5285129749605641632
-      Club_4: 7322482175094510486
-      Club_5: -989662180944460502
-      Club_6: 9000753371612647144
-      Club_7: -4911197541237523971
-      Club_8: 8980198973302484543
-      Club_9: 368875794390313339
-      Club_A: -5263874647668402371
-      Club_J: 2559147268134542868
-      Club_K: -3838374284229865744
-      Club_Q: -998938902856970436
+      Back: -1184517762903133153
+      Club-Ace: -5263874647668402371
+      Club-Eight: 8980198973302484543
+      Club-Five: -989662180944460502
+      Club-Four: 7322482175094510486
+      Club-Jack: 2559147268134542868
+      Club-King: -3838374284229865744
+      Club-Nine: 368875794390313339
+      Club-Queen: -998938902856970436
+      Club-Seven: -4911197541237523971
+      Club-Six: 9000753371612647144
+      Club-Ten: -5445514492879785236
+      Club-Three: -5285129749605641632
+      Club-Two: 4333138732080818910
       CuteCards_13: -5023320546211391196
       CuteCards_28: -7628446821267640200
       CuteCards_29: -723424369275886930
@@ -1479,45 +1479,45 @@ TextureImporter:
       CuteCards_44: 2631891180096049899
       CuteCards_58: -4003229778611574472
       CuteCards_59: -8469564336594609304
-      Diamond_10: -6058591175638864929
-      Diamond_2: 7975030836289974784
-      Diamond_3: 8561092802386936604
-      Diamond_4: -523496404422867513
-      Diamond_5: -8755306274863278819
-      Diamond_6: 7827339188314553269
-      Diamond_7: -7899186708785991793
-      Diamond_8: 3112513888665509672
-      Diamond_9: -3873255989601871390
-      Diamond_A: -5175315137386728789
-      Diamond_J: -9219276080727655814
-      Diamond_K: 2223269284784743197
-      Diamond_Q: -7875163920786017093
-      Heart_10: 2869725675843283743
-      Heart_2: 3405051526748432196
-      Heart_3: -7772479424824778201
-      Heart_4: 310915578907205264
-      Heart_5: 1891299314564809667
-      Heart_6: 1618840198157452696
-      Heart_7: -9184928353552329823
-      Heart_8: -844249458275874610
-      Heart_9: -7137791332021835958
-      Heart_A: 4814014392320650903
-      Heart_J: -2349163834117515985
-      Heart_K: -3820546269226277456
-      Heart_Q: 1889788931670894573
-      Spade_10: 4794239433282563247
-      Spade_2: 2411571093249805434
-      Spade_3: 5386569355683853729
-      Spade_4: -2519287101720647739
-      Spade_5: 5203439707542919797
-      Spade_6: -6643993398168838423
-      Spade_7: 9088635494764499737
-      Spade_8: -8379719324938346336
-      Spade_9: 7220237613910019951
-      Spade_A: -5897554182239356296
-      Spade_J: -240224816420143470
-      Spade_K: -7359497514868848656
-      Spade_Q: -8388481219334044991
+      Diamon-Five: -8755306274863278819
+      Diamond: 7975030836289974784
+      Diamond-Ace: -5175315137386728789
+      Diamond-Eight: 3112513888665509672
+      Diamond-Four: -523496404422867513
+      Diamond-Jack: -9219276080727655814
+      Diamond-King: 2223269284784743197
+      Diamond-Nine: -3873255989601871390
+      Diamond-Queen: -7875163920786017093
+      Diamond-Seven: -7899186708785991793
+      Diamond-Six: 7827339188314553269
+      Diamond-Ten: -6058591175638864929
+      Diamond-Three: 8561092802386936604
+      Heart-Ace: 4814014392320650903
+      Heart-Eight: -844249458275874610
+      Heart-Five: 1891299314564809667
+      Heart-Four: 310915578907205264
+      Heart-Jack: -2349163834117515985
+      Heart-King: -3820546269226277456
+      Heart-Nine: -7137791332021835958
+      Heart-Queen: 1889788931670894573
+      Heart-Seven: -9184928353552329823
+      Heart-Six: 1618840198157452696
+      Heart-Ten: 2869725675843283743
+      Heart-Three: -7772479424824778201
+      Heart-Two: 3405051526748432196
+      Spade-Ace: -5897554182239356296
+      Spade-Eight: -8379719324938346336
+      Spade-Five: 5203439707542919797
+      Spade-Four: -2519287101720647739
+      Spade-Jack: -240224816420143470
+      Spade-King: -7359497514868848656
+      Spade-Nine: 7220237613910019951
+      Spade-Queen: -8388481219334044991
+      Spade-Seven: 9088635494764499737
+      Spade-Six: -6643993398168838423
+      Spade-Ten: 4794239433282563247
+      Spade-Three: 5386569355683853729
+      Spade-Two: 2411571093249805434
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
