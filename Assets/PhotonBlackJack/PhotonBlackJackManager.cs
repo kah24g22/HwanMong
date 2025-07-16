@@ -1,22 +1,27 @@
-using UnityEngine;
-using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+
+
+public class PhotonBlackJackManager : MonoBehaviour
 {
-    private BlackjackGame blackjackGame; // í•µì‹¬ ê²Œì„ ë¡œì§ ì¸ìŠ¤í„´ìŠ¤
+    private PhotonBlackJackLogic gameLogic; // ÇÙ½É °ÔÀÓ ·ÎÁ÷ ÀÎ½ºÅÏ½º
 
-    // UI ìš”ì†Œ ì—°ê²°
+    [SerializeField] BlackJackPlayer m_player1;
+    [SerializeField] BlackJackPlayer m_player2;
+
+    // UI ¿ä¼Ò ¿¬°á
     [SerializeField] private TextMeshProUGUI player1ScoreText;
     [SerializeField] private TextMeshProUGUI player2ScoreText;
     [SerializeField] private TextMeshProUGUI resultText;
-    [SerializeField] private TextMeshProUGUI turnText; // í„´ í‘œì‹œ UI ì¶”ê°€
+    [SerializeField] private TextMeshProUGUI turnText; // ÅÏ Ç¥½Ã UI Ãß°¡
     [SerializeField] private Button hitButton;
     [SerializeField] private Button standButton;
     [SerializeField] private Button restartButton;
 
-    // ì‹œê°í™”
+    // ½Ã°¢È­
     [Header("Card Visuals")]
     [SerializeField] private GameObject cardPrefab;
     [SerializeField] private Transform player1HandTransform;
@@ -28,14 +33,14 @@ public class GameManager : MonoBehaviour
 
     private Dictionary<string, Sprite> cardSprites;
 
-    void Awake() // Start ëŒ€ì‹  Awakeì—ì„œ ì´ˆê¸°í™”í•˜ì—¬ ë‹¤ë¥¸ ìŠ¤í¬ë¦½íŠ¸ë³´ë‹¤ ë¨¼ì € ì‹¤í–‰ë˜ë„ë¡ í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.
+    void Awake() // Start ´ë½Å Awake¿¡¼­ ÃÊ±âÈ­ÇÏ¿© ´Ù¸¥ ½ºÅ©¸³Æ®º¸´Ù ¸ÕÀú ½ÇÇàµÇµµ·Ï ÇÒ ¼ö ÀÖ½À´Ï´Ù.
     {
-        blackjackGame = new BlackjackGame();
-        blackjackGame.OnCardDealt += HandleCardDealt;
-        blackjackGame.OnGameEnded += HandleGameEnded;
-        blackjackGame.OnTurnChanged += HandleTurnChanged; // í„´ ë³€ê²½ ì´ë²¤íŠ¸ êµ¬ë…
+        gameLogic = new PhotonBlackJackLogic(m_player1, m_player2);
+        //gameLogic.OnCardDealt += HandleCardDealt;
+        gameLogic.OnGameEnded += HandleGameEnded;
+        gameLogic.OnTurnChanged += HandleTurnChanged; // ÅÏ º¯°æ ÀÌº¥Æ® ±¸µ¶
 
-        // UI ë²„íŠ¼ ë¦¬ìŠ¤ë„ˆ ë“±ë¡
+        // UI ¹öÆ° ¸®½º³Ê µî·Ï
         hitButton.onClick.AddListener(() => Hit());
         standButton.onClick.AddListener(() => Stand());
         restartButton.onClick.AddListener(() => StartGame());
@@ -43,7 +48,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // ìŠ¤í”„ë¼ì´íŠ¸ ì‹œíŠ¸ì—ì„œ ëª¨ë“  ì¹´ë“œ ì•ë©´ ë¡œë“œ
+        // ½ºÇÁ¶óÀÌÆ® ½ÃÆ®¿¡¼­ ¸ğµç Ä«µå ¾Õ¸é ·Îµå
         cardSprites = new Dictionary<string, Sprite>();
         Sprite[] sprites = Resources.LoadAll<Sprite>("Sprites/Cards/CuteCards");
 
@@ -57,20 +62,20 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        // ì´ì „ ê²Œì„ì˜ ì¹´ë“œ ì˜¤ë¸Œì íŠ¸ë“¤ íŒŒê´´
+        // ÀÌÀü °ÔÀÓÀÇ Ä«µå ¿ÀºêÁ§Æ®µé ÆÄ±«
         foreach (GameObject card in player1CardObjects) Destroy(card);
         foreach (GameObject card in player2CardObjects) Destroy(card);
         player1CardObjects.Clear();
         player2CardObjects.Clear();
 
         resultText.text = "";
-        turnText.text = ""; // í„´ í…ìŠ¤íŠ¸ ì´ˆê¸°í™”
+        turnText.text = ""; // ÅÏ ÅØ½ºÆ® ÃÊ±âÈ­
         hitButton.interactable = true;
         standButton.interactable = true;
         restartButton.gameObject.SetActive(false);
 
-        blackjackGame.StartNewGame(); // í•µì‹¬ ê²Œì„ ë¡œì§ ì‹œì‘
-        UpdateScores(); // ì´ˆê¸° ì ìˆ˜ ì—…ë°ì´íŠ¸
+        //gameLogic.StartGame(); // ÇÙ½É °ÔÀÓ ·ÎÁ÷ ½ÃÀÛ
+        UpdateScores(); // ÃÊ±â Á¡¼ö ¾÷µ¥ÀÌÆ®
     }
 
     private void HandleCardDealt(Card card, Hand hand, bool isFaceUp)
@@ -78,7 +83,7 @@ public class GameManager : MonoBehaviour
         Transform parentTransform;
         List<GameObject> cardObjectsList;
 
-        if (hand == blackjackGame.Player1Hand)
+        if (hand == gameLogic.Player1.Hand)
         {
             parentTransform = player1HandTransform;
             cardObjectsList = player1CardObjects;
@@ -102,7 +107,7 @@ public class GameManager : MonoBehaviour
         {
             newCardObject.GetComponent<SpriteRenderer>().sprite = cardSprites["Card_Back"];
         }
-        UpdateScores(); // ì¹´ë“œê°€ ë¶„ë°°ë  ë•Œë§ˆë‹¤ ì ìˆ˜ ì—…ë°ì´íŠ¸
+        UpdateScores(); // Ä«µå°¡ ºĞ¹èµÉ ¶§¸¶´Ù Á¡¼ö ¾÷µ¥ÀÌÆ®
     }
 
     private void HandleGameEnded(string message)
@@ -110,23 +115,23 @@ public class GameManager : MonoBehaviour
         resultText.text = message;
         turnText.text = "Game Over";
         hitButton.interactable = false;
-        standButton.interactable = false;   
+        standButton.interactable = false;
         restartButton.gameObject.SetActive(true);
-        UpdateScores(true); // ê²Œì„ ì¢…ë£Œ ì‹œ ë”œëŸ¬ ì¹´ë“œ ëª¨ë‘ ê³µê°œ
+        UpdateScores(); // °ÔÀÓ Á¾·á ½Ã µô·¯ Ä«µå ¸ğµÎ °ø°³
     }
 
-    private void HandleTurnChanged(BlackjackGame.PlayerTurn currentPlayer)
+    private void HandleTurnChanged(PlayerTurn currentPlayer)
     {
         turnText.text = $"{currentPlayer}'s Turn";
     }
 
-    void UpdateScores(bool revealDealerCards = false)
+    void UpdateScores()
     {
-        player1ScoreText.text = "Player1: " + blackjackGame.Player1Hand.CalculateValue();
-        player2ScoreText.text = "Player2: " + blackjackGame.Player2Hand.CalculateValue();
+        player1ScoreText.text = "Player1: " + gameLogic.Player1.Hand.CalculateValue();
+        player2ScoreText.text = "Player2: " + gameLogic.Player2.Hand.CalculateValue();
 
-        // í˜„ì¬ í„´ í”Œë ˆì´ì–´ ê°•ì¡° ë˜ëŠ” UI ì—…ë°ì´íŠ¸ ë¡œì§ ì¶”ê°€ ê°€ëŠ¥
-        // ì˜ˆ: if (blackjackGame.CurrentPlayer == BlackjackGame.PlayerTurn.Player1) { /* Player1 UI ê°•ì¡° */ }
+        // ÇöÀç ÅÏ ÇÃ·¹ÀÌ¾î °­Á¶ ¶Ç´Â UI ¾÷µ¥ÀÌÆ® ·ÎÁ÷ Ãß°¡ °¡´É
+        // ¿¹: if (blackjackGame.CurrentPlayer == BlackjackGame.PlayerTurn.Player1) { /* Player1 UI °­Á¶ */ }
     }
 
     Sprite GetCardSprite(Card card)
@@ -138,17 +143,18 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"ìŠ¤í”„ë¼ì´íŠ¸ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤: {spriteName}");
+            Debug.LogError($"½ºÇÁ¶óÀÌÆ®¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù: {spriteName}");
             return null;
         }
     }
 
     public void Hit()
     {
-        blackjackGame.Hit();
+        gameLogic.Hit();
     }
     public void Stand()
     {
-        blackjackGame.Stand();
+        gameLogic.Stand();
     }
+
 }

@@ -7,10 +7,13 @@ public class Card
     public string rank; // 숫자 (A, 2, 3, ..., K)
     public int value;  // 실제 값 (A=11 또는 1, J,Q,K=10)
 
-    public Card(string suit, string rank, int value)
+    public Card(string suit, string rank)
     {
         this.suit = suit;
         this.rank = rank;
-        this.value = value;
+
+        if (rank == "A") this.value = 11;
+        else if (rank == "J" || rank == "Q" || rank == "K") this.value = 10;
+        else this.value = int.Parse(rank);
     }
 }

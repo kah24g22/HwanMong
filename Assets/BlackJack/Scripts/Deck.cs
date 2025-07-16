@@ -21,7 +21,7 @@ public class Deck
                 else if (rank == "J" || rank == "Q" || rank == "K") value = 10;
                 else value = int.Parse(rank);
 
-                cards.Add(new Card(suit, rank, value));
+                cards.Add(new Card(suit, rank));
             }
         }
     }

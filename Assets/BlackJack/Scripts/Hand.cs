@@ -39,4 +39,15 @@ public class Hand
         }
         return value;
     }
+
+    public bool IsBlackJack()
+    {
+        if(CalculateValue() == 21) return true;
+        else return false;
+    }
+    public bool IsBust()
+    {
+        if(CalculateValue() > 21) return true;
+        else return false;
+    }
 }
