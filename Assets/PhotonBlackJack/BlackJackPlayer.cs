@@ -6,6 +6,7 @@ public class BlackJackPlayer : MonoBehaviour
     private bool m_isBust = false;
     private bool m_isBlackJack = false;
     private Hand m_hand;
+    private int m_life = 3; // 라이프 변수 추가됨.
 
 
 
@@ -15,6 +16,7 @@ public class BlackJackPlayer : MonoBehaviour
     public bool IsBust { get { return m_isBust; } }
     public bool IsBlackJack { get { return m_isBlackJack; } }
     public Hand Hand { get { return m_hand; } }
+    public int Life { get { return m_life; } } // 라이프 속성 추가됨.
 
     private void Awake()
     {
@@ -43,6 +45,12 @@ public class BlackJackPlayer : MonoBehaviour
     public void BlackJackCheck()
     {
         m_isBlackJack = Hand.IsBlackJack();
+    }
+
+    // 라이프 감소 메서드 추가됨.
+    public void DecreaseLife()
+    {
+        m_life--;
     }
 
 }

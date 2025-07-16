@@ -154,11 +154,13 @@ public class PhotonBlackJackLogic
         {
             case Result.Win:
                 {
+                    m_player2.DecreaseLife(); // 라이프 감소 로직 추가.
                     EndGame("Player1 Wins.");
                     break;
                 }
             case Result.Lose:
                 {
+                    m_player1.DecreaseLife(); // 라이프 감소 로직 추가.
                     EndGame("Player2 Wins.");
                     break;
                 }
