@@ -607,7 +607,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Diamond
+      name: Diamond-Two
       rect:
         serializedVersion: 2
         x: 104
@@ -673,7 +673,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Diamon-Five
+      name: Diamond-Five
       rect:
         serializedVersion: 2
         x: 404
@@ -1479,10 +1479,9 @@ TextureImporter:
       CuteCards_44: 2631891180096049899
       CuteCards_58: -4003229778611574472
       CuteCards_59: -8469564336594609304
-      Diamon-Five: -8755306274863278819
-      Diamond: 7975030836289974784
       Diamond-Ace: -5175315137386728789
       Diamond-Eight: 3112513888665509672
+      Diamond-Five: -8755306274863278819
       Diamond-Four: -523496404422867513
       Diamond-Jack: -9219276080727655814
       Diamond-King: 2223269284784743197
@@ -1492,6 +1491,7 @@ TextureImporter:
       Diamond-Six: 7827339188314553269
       Diamond-Ten: -6058591175638864929
       Diamond-Three: 8561092802386936604
+      Diamond-Two: 7975030836289974784
       Heart-Ace: 4814014392320650903
       Heart-Eight: -844249458275874610
       Heart-Five: 1891299314564809667

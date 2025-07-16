@@ -11,7 +11,12 @@ public class Deck : MonoBehaviour
 
     void Awake()
     {
-        cards = DeckInit();
+        DeckInit();
+    }
+
+    public void DeckInit()
+    {
+        cards = CardsInit();
         Suffle();
     }
 
@@ -22,7 +27,7 @@ public class Deck : MonoBehaviour
         return card;
     }
 
-    private List<Card> DeckInit()
+    private List<Card> CardsInit()
     {
         List<Card> cards = new List<Card>();
 
