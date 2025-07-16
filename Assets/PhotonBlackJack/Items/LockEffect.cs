@@ -1,4 +1,3 @@
-// 파일 경로: D:/School/Major/GameJam1/HwanMong/Assets/PhotonBlackJack/Items/LockEffect.cs
 using UnityEngine;
 
 /// <summary>

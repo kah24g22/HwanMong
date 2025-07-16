@@ -21,7 +21,7 @@ public class PhotonBlackJackLogic
     public BlackJackPlayer Player2 { get { return m_player2; } }
     public PlayerTurn Turn { get { return m_turn;} set { m_turn = value; } }
 
-    private Random random = new Random(); // Random 인스턴스 추가
+    
     private bool isFirstRound = true; // 첫 라운드 여부를 추적하는 플래그
 
     private ItemType GetRandomItemType()
@@ -31,7 +31,7 @@ public class PhotonBlackJackLogic
         ItemType randomItem;
         do
         {
-            randomItem = (ItemType)itemTypes.GetValue(random.Next(itemTypes.Length));
+            randomItem = (ItemType)itemTypes.GetValue(UnityEngine.Random.Range(1, itemTypes.Length));
         } while (randomItem == ItemType.None); // None이 아닌 아이템을 선택할 때까지 반복
         return randomItem;
     }

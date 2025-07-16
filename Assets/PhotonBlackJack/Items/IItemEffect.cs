@@ -1,5 +1,3 @@
-// 파일 경로: D:/School/Major/GameJam1/HwanMong/Assets/PhotonBlackJack/Items/IItemEffect.cs
-
 /// <summary>
 /// 모든 아이템 효과가 구현해야 하는 인터페이스입니다.
 /// </summary>

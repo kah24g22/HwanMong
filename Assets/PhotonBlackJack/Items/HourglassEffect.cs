@@ -7,7 +7,7 @@ public class HourglassEffect : IItemEffect
 {
     public void Execute(PhotonBlackJackLogic gameLogic, BlackJackPlayer user)
     {
-        Debug.Log($"Player {user.NickName} used Hourglass item. Starting new round immediately.");
+        Debug.Log($"Player {user.Player.NickName} used Hourglass item. Starting new round immediately.");
         gameLogic.StartGame(user); // 새 라운드 시작
     }
 }

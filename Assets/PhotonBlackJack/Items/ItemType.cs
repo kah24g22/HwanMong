@@ -1,5 +1,3 @@
-// 파일 경로: D:/School/Major/GameJam1/HwanMong/Assets/PhotonBlackJack/Items/ItemType.cs
-
 /// <summary>
 /// 게임에 존재하는 아이템의 종류를 정의하는 열거형입니다.
 /// </summary>
