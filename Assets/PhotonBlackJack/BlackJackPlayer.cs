@@ -6,10 +6,9 @@ public class BlackJackPlayer : MonoBehaviour
     private bool m_isBust = false;
     private bool m_isBlackJack = false;
     private Hand m_hand;
-    private int m_life = 3; // 라이프 변수 추가됨
+    [SerializeField] private int m_maxLife = 3; // 라이프 최대치 변수 추가
+    private int m_life; // 현재 라이프 변수 (초기화는 Awake에서)
     public bool IsStandDisabled { get; set; } // 스탠드 금지 상태 변수 추가
-
-
 
     public bool IsTurnOn;
     public Player Player;
@@ -18,10 +17,12 @@ public class BlackJackPlayer : MonoBehaviour
     public bool IsBlackJack { get { return m_isBlackJack; } }
     public Hand Hand { get { return m_hand; } }
     public int Life { get { return m_life; } } // 라이프 속성 추가됨
+    public int MaxLife { get { return m_maxLife; } } // 라이프 최대치 속성 추가
 
     private void Awake()
     {
         m_hand = new Hand();
+        m_life = m_maxLife; // Awake에서 현재 라이프를 최대치로 초기화
     }
 
     public void PlayerReset()
