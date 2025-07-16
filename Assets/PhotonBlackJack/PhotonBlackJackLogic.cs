@@ -1,5 +1,7 @@
 ﻿using Photon.Realtime;
 using UnityEngine;
+using System; // Random 클래스를 사용하기 위해 추가
+using System.Linq; // Enum.GetValues를 사용하기 위해 추가
 
 public enum PlayerTurn { Player1, Player2 }
 public enum Result { Win, Lose, Draw, None, }
@@ -19,6 +21,21 @@ public class PhotonBlackJackLogic
     public BlackJackPlayer Player2 { get { return m_player2; } }
     public PlayerTurn Turn { get { return m_turn;} set { m_turn = value; } }
 
+    private Random random = new Random(); // Random 인스턴스 추가
+    private bool isFirstRound = true; // 첫 라운드 여부를 추적하는 플래그
+
+    private ItemType GetRandomItemType()
+    {
+        Array itemTypes = Enum.GetValues(typeof(ItemType));
+        // None을 제외한 아이템 중에서 랜덤 선택
+        ItemType randomItem;
+        do
+        {
+            randomItem = (ItemType)itemTypes.GetValue(random.Next(itemTypes.Length));
+        } while (randomItem == ItemType.None); // None이 아닌 아이템을 선택할 때까지 반복
+        return randomItem;
+    }
+
 
 
     public delegate void CardDealtEventHandler(Player pPlayer, Card card, bool isFaceUp);
@@ -35,6 +52,7 @@ public class PhotonBlackJackLogic
         m_player1 = player1;
         m_player2 = player2;
         m_deck = new Deck();
+        isFirstRound = true; // 게임 시작 시 첫 라운드로 설정
     }
 
     
@@ -45,6 +63,14 @@ public class PhotonBlackJackLogic
 
         m_player1.PlayerReset();
         m_player2.PlayerReset();
+
+        if (isFirstRound)
+        {
+            // 첫 라운드에는 양측 플레이어에게 아이템 지급
+            m_player1.AddItem(GetRandomItemType());
+            m_player2.AddItem(GetRandomItemType());
+            isFirstRound = false; // 첫 라운드 완료
+        }
 
         m_turn = PlayerTurn.Player1;
         OnTurnChanged?.Invoke(m_turn);
@@ -170,12 +196,14 @@ public class PhotonBlackJackLogic
             case Result.Win:
                 {
                     m_player2.DecreaseLife(); // 라이프 감소 로직 추가
+                    m_player2.AddItem(GetRandomItemType()); // 패배한 플레이어에게 아이템 지급
                     EndGame("Player1 Wins.");
                     break;
                 }
             case Result.Lose:
                 {
                     m_player1.DecreaseLife(); // 라이프 감소 로직 추가
+                    m_player1.AddItem(GetRandomItemType()); // 패배한 플레이어에게 아이템 지급
                     EndGame("Player2 Wins.");
                     break;
                 }
