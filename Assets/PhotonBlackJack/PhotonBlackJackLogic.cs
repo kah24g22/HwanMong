@@ -10,6 +10,7 @@ public class PhotonBlackJackLogic
     private BlackJackPlayer m_player2;
 
     private Deck m_deck;
+    public Deck Deck { get { return m_deck; } } // Deck 접근자 추가
 
     private PlayerTurn m_turn;
 

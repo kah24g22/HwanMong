@@ -20,5 +20,10 @@ public enum ItemType
     /// </summary>
     Lock = 2,
 
+    /// <summary>
+    /// 덱의 다음 카드를 미리 보는 '수정 구슬' 아이템입니다.
+    /// </summary>
+    CrystalBall = 3,
+
     // 나중에 새로운 아이템을 추가할 때, 아래에 이어서 추가하시면 됩니다.
 }

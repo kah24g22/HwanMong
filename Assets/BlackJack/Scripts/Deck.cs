@@ -41,4 +41,11 @@ public class Deck
         cards.RemoveAt(0);
         return cardToDeal;
     }
+
+    // 덱에서 카드를 제거하지 않고 맨 위의 카드를 확인하는 메서드
+    public Card Peek()
+    {
+        if (cards.Count == 0) return null;
+        return cards[0];
+    }
 }
