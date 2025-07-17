@@ -37,6 +37,7 @@ public class SoloBlackJack : MonoBehaviour
     [SerializeField] private Image[] m_enemyLifeHearts; // 적 라이프 하트 UI 배열 
 
     [SerializeField] Button[] buttons;
+    [SerializeField] private TextMeshProUGUI[] m_itemTexts; // 아이템 이름 표시를 위한 TextMeshProUGUI 배열
 
     private void Awake()
     {
@@ -59,6 +60,11 @@ public class SoloBlackJack : MonoBehaviour
         {
             int index = i;
             button.onClick.AddListener(() => UseItem(index));
+            if (m_itemTexts != null && index < m_itemTexts.Length)
+            {
+                m_itemTexts[index].text = ""; // 초기에는 비워둠
+            }
+            i++;
         }
 
     }
@@ -110,6 +116,8 @@ public class SoloBlackJack : MonoBehaviour
         standButton.interactable = true;
 
         m_gameLogic.StartGame();
+
+        UpdateItemUI(); // 아이템 UI 업데이트
 
         m_gameLogic.DealCard(m_myBlackJackPlayer, true);
         m_gameLogic.DealCard(m_enemyBlackJackPlayer, true);
@@ -254,6 +262,21 @@ public class SoloBlackJack : MonoBehaviour
         UpdateScores();
     }
 
+    private void UpdateItemUI()
+    {
+        for (int i = 0; i < m_itemTexts.Length; i++)
+        {
+            if (i < m_myBlackJackPlayer.Inventory.Count)
+            {
+                m_itemTexts[i].text = m_myBlackJackPlayer.Inventory[i].ToString();
+            }
+            else
+            {
+                m_itemTexts[i].text = "";
+            }
+        }
+    }
+
     public void Stand()
     {
         if (m_gameLogic.Turn == PlayerTurn.Player1)
@@ -309,6 +332,7 @@ public class SoloBlackJack : MonoBehaviour
             Debug.Log(user);
             effect.Execute(m_gameLogic, user);
             user.RemoveItem(itemType); // 아이템 사용 후 인벤토리에서 제거
+            UpdateItemUI(); // 아이템 사용 후 UI 업데이트
         }
         else
         {
