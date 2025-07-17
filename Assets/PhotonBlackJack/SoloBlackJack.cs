@@ -28,8 +28,13 @@ public class SoloBlackJack : MonoBehaviour
 
     private Dictionary<string, Sprite> cardSprites;
 
+    private bool m_isGameOver = false; // 게임 종료 플래그 추가
+
     [SerializeField] private BlackJackPlayer m_myBlackJackPlayer;
     [SerializeField] private BlackJackPlayer m_enemyBlackJackPlayer;
+
+    [SerializeField] private Image[] m_myLifeHearts; // 내 라이프 하트 UI 배열
+    [SerializeField] private Image[] m_enemyLifeHearts; // 적 라이프 하트 UI 배열 
 
     [SerializeField] Button[] buttons;
 
@@ -40,6 +45,9 @@ public class SoloBlackJack : MonoBehaviour
         m_gameLogic.OnCardDealt += CardUpdate;
         m_gameLogic.OnGameEnded += GameEnd;
         m_gameLogic.OnTurnChanged += TurnChanged;
+
+        m_myBlackJackPlayer.OnLifeChanged += (life) => UpdateLifeUI(life, m_myLifeHearts); // 내 라이프 변경 이벤트 구독
+        m_enemyBlackJackPlayer.OnLifeChanged += (life) => UpdateLifeUI(life, m_enemyLifeHearts); // 적 라이프 변경 이벤트 구독
 
         hitButton.onClick.AddListener(() => Hit());
         standButton.onClick.AddListener(() => Stand());
@@ -60,7 +68,7 @@ public class SoloBlackJack : MonoBehaviour
     void Start()
     {
         cardSprites = new Dictionary<string, Sprite>();
-        Sprite[] sprites = Resources.LoadAll<Sprite>("Sprites/Cards/CuteCards");
+        Sprite[] sprites = Resources.LoadAll<Sprite>("Sprites/Cards/Cards");
 
         foreach (Sprite sprite in sprites)
         {
@@ -110,9 +118,28 @@ public class SoloBlackJack : MonoBehaviour
 
         UpdateScores();
 
+        UpdateLifeUI(m_myBlackJackPlayer.Life, m_myLifeHearts); // 게임 시작 시 내 라이프 UI 업데이트
+        UpdateLifeUI(m_enemyBlackJackPlayer.Life, m_enemyLifeHearts); // 게임 시작 시 적 라이프 UI 업데이트
+
         foreach(var p in m_enemyBlackJackPlayer.Hand.Cards)
         {
             Debug.Log(p.suit + p.rank);
+        }
+    }
+
+    private void UpdateLifeUI(int currentLife, Image[] lifeHearts)
+    {
+        Debug.Log($"[SoloBlackJack] Updating Life UI. Current Life: {currentLife}, Hearts Array Length: {lifeHearts.Length}");
+        for (int i = 0; i < lifeHearts.Length; i++)
+        {
+            if (i < currentLife)
+            {
+                lifeHearts[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                lifeHearts[i].gameObject.SetActive(false);
+            }
         }
     }
 
@@ -176,6 +203,7 @@ public class SoloBlackJack : MonoBehaviour
         standButton.interactable = false;
         restartButton.gameObject.SetActive(true);
         UpdateScores(); // 게임 종료 시 딜러 카드 모두 공개
+        m_isGameOver = true; // 게임 종료 플래그 설정
     }
 
     private void HandleTurnChanged(PlayerTurn currentPlayer)

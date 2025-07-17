@@ -1,9 +1,12 @@
 ﻿using Photon.Realtime;
 using UnityEngine;
 using System.Collections.Generic; // List를 사용하기 위해 추가
+using System; // Action을 사용하기 위해 추가
 
 public class BlackJackPlayer : MonoBehaviour
 {
+    public event Action<int> OnLifeChanged; // 라이프 변경 이벤트 추가
+
     private bool m_isBust = false;
     private bool m_isBlackJack = false;
     private Hand m_hand;
@@ -59,7 +62,10 @@ public class BlackJackPlayer : MonoBehaviour
     // 라이프 감소 메서드 추가됨
     public void DecreaseLife()
     {
+        Debug.Log($"[BlackJackPlayer] Life before decrease: {m_life}");
         m_life--;
+        Debug.Log($"[BlackJackPlayer] Life after decrease: {m_life}");
+        OnLifeChanged?.Invoke(m_life); // 라이프 변경 시 이벤트 호출
     }
 
     // 라이프 증가 메서드 추가됨
@@ -68,6 +74,7 @@ public class BlackJackPlayer : MonoBehaviour
         if (m_life < m_maxLife)
         {
             m_life++;
+            OnLifeChanged?.Invoke(m_life); // 라이프 변경 시 이벤트 호출
         }
     }
 

@@ -16,7 +16,7 @@ public class SoloBlackJackLogic
     public BlackJackPlayer Player2 { get { return m_player2; } }
     public PlayerTurn Turn { get { return m_turn; } set { m_turn = value; } }
 
-
+    private bool m_isGameEnded = false; // 게임 종료 플래그 추가
     private bool isFirstRound = true; // 첫 라운드 여부를 추적하는 플래그
 
     private ItemType GetRandomItemType()
@@ -53,6 +53,7 @@ public class SoloBlackJackLogic
 
     public void StartGame()
     {
+        m_isGameEnded = false; // 게임 시작 시 플래그 초기화
         m_deck.CreateDeck();
         m_deck.Shuffle();
 
@@ -169,6 +170,7 @@ public class SoloBlackJackLogic
 
     private void EndGame(string message)
     {
+        m_isGameEnded = true; // 게임 종료 시 플래그 설정
         OnGameEnded?.Invoke(message);
     }
 
@@ -186,6 +188,8 @@ public class SoloBlackJackLogic
     }
     public void WinnerCheck()
     {
+        if (m_isGameEnded) return; // 이미 게임이 종료되었으면 중복 호출 방지
+
         Result result = CalculrateWinner();
         switch (result)
         {
