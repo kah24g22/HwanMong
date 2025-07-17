@@ -6,13 +6,13 @@ using UnityEngine;
 /// </summary>
 public class CrystalBallEffect : IItemEffect
 {
-    public void Execute(PhotonBlackJackLogic gameLogic, BlackJackPlayer user)
+    public void Execute(SoloBlackJackLogic gameLogic, BlackJackPlayer user)
     {
         Card nextCard = gameLogic.Deck.Peek(); // Deck의 Peek() 메서드 사용
 
         if (nextCard != null)
         {
-            Debug.Log($"{user.Player.NickName}님이 수정 구슬을 사용하여 다음 카드를 미리 보았습니다: {nextCard.suit} {nextCard.rank}");
+            Debug.Log($"{user.name}님이 수정 구슬을 사용하여 다음 카드를 미리 보았습니다: {nextCard.suit} {nextCard.rank}");
             // (추가) 여기에 사용자에게만 다음 카드를 보여주는 UI 로직을 연결해야 합니다.
             // 이 정보는 다른 플레이어에게는 보여지지 않아야 합니다.
         }

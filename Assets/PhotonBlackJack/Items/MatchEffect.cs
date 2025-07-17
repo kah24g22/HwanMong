@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class MatchEffect : IItemEffect
 {
-    public void Execute(PhotonBlackJackLogic gameLogic, BlackJackPlayer user)
+    public void Execute(SoloBlackJackLogic gameLogic, BlackJackPlayer user)
     {
         // 1. 아이템을 사용한 플레이어를 기준으로 상대방을 찾습니다.
         BlackJackPlayer opponent = (gameLogic.Player1 == user) ? gameLogic.Player2 : gameLogic.Player1;

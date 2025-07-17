@@ -5,9 +5,9 @@ using UnityEngine;
 /// </summary>
 public class EnvelopeEffect : IItemEffect
 {
-    public void Execute(PhotonBlackJackLogic gameLogic, BlackJackPlayer user)
+    public void Execute(SoloBlackJackLogic gameLogic, BlackJackPlayer user)
     {
         gameLogic.IsNextCardHidden = true; // 다음 히트 카드를 숨김
-        Debug.Log($"Player {user.Player.NickName} used Envelope item. Next hit card will be hidden.");
+        Debug.Log($"Player {user.name} used Envelope item. Next hit card will be hidden.");
     }
 }

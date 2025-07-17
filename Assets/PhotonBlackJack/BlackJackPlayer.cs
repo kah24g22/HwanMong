@@ -77,10 +77,10 @@ public class BlackJackPlayer : MonoBehaviour
         if (m_inventory.Count < MAX_INVENTORY_SIZE)
         {
             m_inventory.Add(item);
-            Debug.Log($"Player {Player.NickName} added item: {item}. Inventory size: {m_inventory.Count}/{MAX_INVENTORY_SIZE}");
+            Debug.Log($"Player {name} added item: {item}. Inventory size: {m_inventory.Count}/{MAX_INVENTORY_SIZE}");
             return true;
         }
-        Debug.LogWarning($"Player {Player.NickName}'s inventory is full. Cannot add item: {item}.");
+        Debug.LogWarning($"Player {name}'s inventory is full. Cannot add item: {item}.");
         return false;
     }
 
@@ -89,11 +89,11 @@ public class BlackJackPlayer : MonoBehaviour
     {
         if (m_inventory.Remove(item))
         {
-            Debug.Log($"Player {Player.NickName} removed item: {item}. Inventory size: {m_inventory.Count}/{MAX_INVENTORY_SIZE}");
+            Debug.Log($"Player {name} removed item: {item}. Inventory size: {m_inventory.Count}/{MAX_INVENTORY_SIZE}");
         }
         else
         {
-            Debug.LogWarning($"Player {Player.NickName} tried to remove item {item}, but it was not found in inventory.");
+            Debug.LogWarning($"Player {name} tried to remove item {item}, but it was not found in inventory.");
         }
     }
 

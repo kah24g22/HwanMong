@@ -6,16 +6,16 @@ using UnityEngine;
 /// </summary>
 public class ScaleEffect : IItemEffect
 {
-    public void Execute(PhotonBlackJackLogic gameLogic, BlackJackPlayer user)
+    public void Execute(SoloBlackJackLogic gameLogic, BlackJackPlayer user)
     {
         if (user.Life < user.MaxLife)
         {
             user.IncreaseLife(); // 라이프 증가
-            Debug.Log($"Player {user.Player.NickName} used Scale item. Life increased by 1. Current life: {user.Life}/{user.MaxLife}");
+            Debug.Log($"Player {user.name} used Scale item. Life increased by 1. Current life: {user.Life}/{user.MaxLife}");
         }
         else
         {
-            Debug.Log($"Player {user.Player.NickName} used Scale item, but life is already at maximum ({user.MaxLife}).");
+            Debug.Log($"Player {user.name} used Scale item, but life is already at maximum ({user.MaxLife}).");
         }
     }
 }

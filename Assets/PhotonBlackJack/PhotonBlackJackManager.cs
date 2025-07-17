@@ -185,7 +185,7 @@ public class PhotonBlackJackManager : MonoBehaviour
 
         if (effect != null)
         {
-            effect.Execute(gameLogic, user);
+            //effect.Execute(gameLogic, user);
             user.RemoveItem(itemType); // 아이템 사용 후 인벤토리에서 제거
         }
         else

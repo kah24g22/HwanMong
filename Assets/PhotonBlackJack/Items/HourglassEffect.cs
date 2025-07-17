@@ -5,9 +5,9 @@ using UnityEngine;
 /// </summary>
 public class HourglassEffect : IItemEffect
 {
-    public void Execute(PhotonBlackJackLogic gameLogic, BlackJackPlayer user)
+    public void Execute(SoloBlackJackLogic gameLogic, BlackJackPlayer user)
     {
-        Debug.Log($"Player {user.Player.NickName} used Hourglass item. Starting new round immediately.");
-        gameLogic.StartGame(user); // 새 라운드 시작
+        Debug.Log($"Player {user.name} used Hourglass item. Starting new round immediately.");
+        gameLogic.StartGame(); // 새 라운드 시작
     }
 }

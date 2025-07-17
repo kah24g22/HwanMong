@@ -54,6 +54,8 @@ public class MockScript : MonoBehaviourPunCallbacks
 
     private Hashtable props = new Hashtable();
 
+    [SerializeField] Button[] buttons;
+
     private void Awake()
     {
         m_gameLogic = new PhotonBlackJackLogic(m_player1, m_player2);
@@ -85,7 +87,6 @@ public class MockScript : MonoBehaviourPunCallbacks
             m_myBlackJackPlayer = m_player2;
             m_enemyBlackJackPlayer = m_player1;
         }
-
     }
 
     void Start()
@@ -365,8 +366,5 @@ public class MockScript : MonoBehaviourPunCallbacks
 
         PhotonNetwork.CurrentRoom.SetCustomProperties(props);
     }
-
-    
-
 }
 
