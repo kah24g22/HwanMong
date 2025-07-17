@@ -1,4 +1,5 @@
-﻿using Photon.Realtime;
+﻿using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 using System.Collections.Generic; // List를 사용하기 위해 추가
 
@@ -24,6 +25,8 @@ public class BlackJackPlayer : MonoBehaviour
     public int MaxLife { get { return m_maxLife; } } // 라이프 최대치 속성 추가
     public IReadOnlyList<ItemType> Inventory { get { return m_inventory; } } // 인벤토리 읽기 전용 접근자
 
+    public event System.Action OnInventoryChanged; // 인벤토리 변경 시 호출될 이벤트
+
     private void Awake()
     {
         m_hand = new Hand();
@@ -41,6 +44,7 @@ public class BlackJackPlayer : MonoBehaviour
         Hand.Clear();
         IsStandDisabled = false; // 라운드 시작 시 스탠드 금지 상태 초기화
         m_inventory.Clear(); // 플레이어 리셋 시 인벤토리 초기화
+        UpdatePlayerCustomProperties(); // 인벤토리 초기화 후 Custom Properties 업데이트
     }
 
     public void BustCheck()
@@ -71,6 +75,12 @@ public class BlackJackPlayer : MonoBehaviour
         }
     }
 
+    // 인벤토리 비우기 메서드 추가
+    public void ClearInventory()
+    {
+        m_inventory.Clear();
+    }
+
     // 아이템 추가 메서드
     public bool AddItem(ItemType item)
     {
@@ -78,6 +88,8 @@ public class BlackJackPlayer : MonoBehaviour
         {
             m_inventory.Add(item);
             Debug.Log($"Player {Player.NickName} added item: {item}. Inventory size: {m_inventory.Count}/{MAX_INVENTORY_SIZE}");
+            UpdatePlayerCustomProperties(); // Custom Properties 업데이트
+            OnInventoryChanged?.Invoke(); // 인벤토리 변경 이벤트 호출
             return true;
         }
         Debug.LogWarning($"Player {Player.NickName}'s inventory is full. Cannot add item: {item}.");
@@ -90,10 +102,28 @@ public class BlackJackPlayer : MonoBehaviour
         if (m_inventory.Remove(item))
         {
             Debug.Log($"Player {Player.NickName} removed item: {item}. Inventory size: {m_inventory.Count}/{MAX_INVENTORY_SIZE}");
+            UpdatePlayerCustomProperties(); // Custom Properties 업데이트
+            OnInventoryChanged?.Invoke(); // 인벤토리 변경 이벤트 호출
         }
         else
         {
             Debug.LogWarning($"Player {Player.NickName} tried to remove item {item}, but it was not found in inventory.");
+        }
+    }
+
+    // 플레이어 Custom Properties 업데이트
+    private void UpdatePlayerCustomProperties()
+    {
+        if (Player != null && PhotonNetwork.IsConnectedAndReady)
+        {
+            ExitGames.Client.Photon.Hashtable customProperties = new ExitGames.Client.Photon.Hashtable();
+            int[] itemArray = new int[m_inventory.Count];
+            for (int i = 0; i < m_inventory.Count; i++)
+            {
+                itemArray[i] = (int)m_inventory[i];
+            }
+            customProperties["Items"] = itemArray;
+            Player.SetCustomProperties(customProperties);
         }
     }
 

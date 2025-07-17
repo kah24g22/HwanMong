@@ -36,6 +36,10 @@ public class MockScript : MonoBehaviourPunCallbacks
     [SerializeField] private Button standButton;
     [SerializeField] private Button restartButton;
 
+    [Header("Item UI")]
+    [SerializeField] private Button[] myItemButtons = new Button[3];
+    [SerializeField] private Button[] enemyItemButtons = new Button[3];
+
     [Header("Card Visuals")]
     [SerializeField] private GameObject cardPrefab;
     [SerializeField] private Transform myHandTransform;
@@ -69,7 +73,9 @@ public class MockScript : MonoBehaviourPunCallbacks
         standButton.onClick.AddListener(() => Stand());
         restartButton.onClick.AddListener(() => StartGame());
 
-
+        // 아이템 인벤토리 변경 이벤트 구독
+        m_player1.OnInventoryChanged += () => UpdateItemUI(m_player1);
+        m_player2.OnInventoryChanged += () => UpdateItemUI(m_player2);
 
         if (PhotonNetwork.IsMasterClient)
         {
@@ -86,6 +92,9 @@ public class MockScript : MonoBehaviourPunCallbacks
             m_enemyBlackJackPlayer = m_player1;
         }
 
+        // 초기 아이템 UI 업데이트
+        UpdateItemUI(m_player1);
+        UpdateItemUI(m_player2);
     }
 
     void Start()
@@ -100,6 +109,45 @@ public class MockScript : MonoBehaviourPunCallbacks
         {
             cardSprites.Add(sprite.name, sprite);
         }
+    }
+
+    private void UpdateItemUI(BlackJackPlayer player)
+    {
+        // 내 플레이어의 UI만 업데이트
+        if (player != m_myBlackJackPlayer)
+        {
+            return;
+        }
+
+        Button[] targetButtons = myItemButtons; // 내 아이템 버튼만 사용
+
+        for (int i = 0; i < targetButtons.Length; i++)
+        {
+            if (i < player.Inventory.Count)
+            {
+                // 아이템이 있는 경우
+                targetButtons[i].gameObject.SetActive(true);
+                targetButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = player.Inventory[i].ToString();
+                // TODO: 아이템 사용 가능 여부에 따라 interactable 설정 (현재 턴 등)
+                targetButtons[i].interactable = true; 
+
+                // 기존 리스너 제거 후 새 리스너 추가 (중복 호출 방지)
+                targetButtons[i].onClick.RemoveAllListeners();
+                int itemIndex = i; // 클로저를 위한 변수
+                targetButtons[i].onClick.AddListener(() => OnItemButtonClicked(player.Inventory[itemIndex], player));
+            }
+            else
+            {
+                // 아이템이 없는 경우
+                targetButtons[i].gameObject.SetActive(false);
+            }
+        }
+    }
+
+    private void OnItemButtonClicked(ItemType itemType, BlackJackPlayer player)
+    {
+        // 아이템 사용 RPC 호출
+        photonView.RPC("RPC_UseItem", RpcTarget.All, player.Player.ActorNumber, (int)itemType);
     }
 
     private void Update()
@@ -364,6 +412,57 @@ public class MockScript : MonoBehaviourPunCallbacks
         props[RoomInfo.player2IsTurnOn.ToString()] = m_gameLogic.Player2.IsTurnOn;
 
         PhotonNetwork.CurrentRoom.SetCustomProperties(props);
+    }
+
+    [PunRPC]
+    public void RPC_UseItem(int playerActorNumber, ItemType itemType)
+    {
+        BlackJackPlayer targetPlayer = null;
+        if (m_myBlackJackPlayer.Player.ActorNumber == playerActorNumber)
+        {
+            targetPlayer = m_myBlackJackPlayer;
+        }
+        else if (m_enemyBlackJackPlayer.Player.ActorNumber == playerActorNumber)
+        {
+            targetPlayer = m_enemyBlackJackPlayer;
+        }
+
+        if (targetPlayer != null)
+        {
+            m_gameLogic.UseItem(itemType, targetPlayer);
+            // 아이템 사용 후 UI 업데이트는 OnInventoryChanged 이벤트에 의해 자동으로 처리됩니다.
+        }
+        else
+        {
+            Debug.LogWarning($"RPC_UseItem: Target player with ActorNumber {playerActorNumber} not found.");
+        }
+    }
+
+    public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
+    {
+        if (changedProps.ContainsKey("Items"))
+        {
+            BlackJackPlayer blackJackPlayer = null;
+            if (targetPlayer == m_myBlackJackPlayer.Player)
+            {
+                blackJackPlayer = m_myBlackJackPlayer;
+            }
+            else if (targetPlayer == m_enemyBlackJackPlayer.Player)
+            {
+                blackJackPlayer = m_enemyBlackJackPlayer;
+            }
+
+            if (blackJackPlayer != null)
+            {
+                blackJackPlayer.ClearInventory(); // 기존 인벤토리 클리어
+                int[] itemArray = (int[])changedProps["Items"];
+                foreach (int itemInt in itemArray)
+                {
+                    blackJackPlayer.AddItem((ItemType)itemInt);
+                }
+                UpdateItemUI(blackJackPlayer);
+            }
+        }
     }
 
     

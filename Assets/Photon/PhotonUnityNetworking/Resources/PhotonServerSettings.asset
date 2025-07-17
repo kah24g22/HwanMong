@@ -50,6 +50,7 @@ MonoBehaviour:
   - StartGameLogic
   - StandLogic
   - HitLogic
+  - RPC_UseItem
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

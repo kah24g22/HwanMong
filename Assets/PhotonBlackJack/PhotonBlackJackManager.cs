@@ -157,41 +157,4 @@ public class PhotonBlackJackManager : MonoBehaviour
         gameLogic.Stand();
     }
 
-    public void UseItem(ItemType itemType, BlackJackPlayer user)
-    {
-        IItemEffect effect = null;
-        switch (itemType)
-        {
-            case ItemType.Envelope:
-                effect = new EnvelopeEffect();
-                break;
-            case ItemType.Scale:
-                effect = new ScaleEffect();
-                break;
-            case ItemType.Hourglass:
-                effect = new HourglassEffect();
-                break;
-            // 다른 아이템들도 여기에 추가
-            case ItemType.Match:
-                effect = new MatchEffect();
-                break;
-            case ItemType.Lock:
-                effect = new LockEffect();
-                break;
-            case ItemType.CrystalBall:
-                effect = new CrystalBallEffect();
-                break;
-        }
-
-        if (effect != null)
-        {
-            effect.Execute(gameLogic, user);
-            user.RemoveItem(itemType); // 아이템 사용 후 인벤토리에서 제거
-        }
-        else
-        {
-            Debug.LogWarning($"Unknown item type: {itemType}");
-        }
     }
-
-}
