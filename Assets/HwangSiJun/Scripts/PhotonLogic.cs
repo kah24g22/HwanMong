@@ -3,18 +3,19 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
-enum RoomInfo
-{
-    turn,
-    player1Cards,
-    player2Cards,
-}
+
 
 public class PhotonLogic : MonoBehaviourPunCallbacks
 {
+    enum RoomInfo
+    {
+        turn,
+        player1Cards,
+        player2Cards,
+    }
+
     [SerializeField] TextMeshProUGUI m_playerText;
     [SerializeField] List<int> m_myCards = new List<int>();
     [SerializeField] TextMeshProUGUI m_myCardText;
@@ -116,6 +117,7 @@ public class PhotonLogic : MonoBehaviourPunCallbacks
         {
             m_enemyCards.Add(pCardValue);
         }
+
         if (PhotonNetwork.IsMasterClient)
         {
             props[RoomInfo.player1Cards.ToString()] = m_myCards.ToArray();

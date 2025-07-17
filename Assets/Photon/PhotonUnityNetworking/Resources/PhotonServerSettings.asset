@@ -43,6 +43,13 @@ MonoBehaviour:
   - TurnChange
   - OnAddCardButton
   - AddCard
+  - HandleCardDealt
+  - HandleGameEnded
+  - HandleTurnChanged
+  - StartGame
+  - StartGameLogic
+  - StandLogic
+  - HitLogic
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

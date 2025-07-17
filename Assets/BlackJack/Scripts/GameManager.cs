@@ -108,27 +108,11 @@ public class GameManager : MonoBehaviour
     private void HandleGameEnded(string message)
     {
         resultText.text = message;
-        turnText.text = "Game Over"; // 게임 종료 시 턴 텍스트 변경
+        turnText.text = "Game Over";
         hitButton.interactable = false;
-        standButton.interactable = false;
+        standButton.interactable = false;   
         restartButton.gameObject.SetActive(true);
         UpdateScores(true); // 게임 종료 시 딜러 카드 모두 공개
-    }
-
-    public void Hit()
-    {
-        blackjackGame.Hit();
-        // 점수 업데이트는 HandleCardDealt에서 이미 처리됨
-    }
-
-    public void Stand()
-    {
-        // 스탠드 시 버튼을 비활성화하는 로직을 제거합니다.
-        // 버튼 활성화/비활성화는 턴 변경 및 게임 종료 시점에만 제어됩니다.
-
-        blackjackGame.Stand();
-        // UpdateScores(true)는 게임 종료 시에만 필요하므로 제거합니다.
-        // 턴이 바뀌면 HandleTurnChanged에서 UI가 업데이트될 것입니다.
     }
 
     private void HandleTurnChanged(BlackjackGame.PlayerTurn currentPlayer)
@@ -157,5 +141,14 @@ public class GameManager : MonoBehaviour
             Debug.LogError($"스프라이트를 찾을 수 없습니다: {spriteName}");
             return null;
         }
+    }
+
+    public void Hit()
+    {
+        blackjackGame.Hit();
+    }
+    public void Stand()
+    {
+        blackjackGame.Stand();
     }
 }

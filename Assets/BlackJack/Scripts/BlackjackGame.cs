@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 public class BlackjackGame
 {
     private Deck deck;
@@ -53,6 +51,7 @@ public class BlackjackGame
     private void DealCard(Hand hand, bool isFaceUp)
     {
         Card newCard = deck.Deal();
+
         if (newCard != null)
         {
             hand.AddCard(newCard);

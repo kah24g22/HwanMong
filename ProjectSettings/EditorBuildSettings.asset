@@ -6,11 +6,26 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/HwangSiJun/StartTest.unity
-    guid: 15ec35f4582766342ad592125707b249
+    path: Assets/PhotonBlackJack/Scene/StartMenu.unity
+    guid: fce5b6b9c3174984686cf566411c5d15
   - enabled: 1
-    path: Assets/HwangSiJun/GameScene.unity
-    guid: 3fbd080ca08321c418594b013ca83d16
+    path: Assets/PhotonBlackJack/Scene/SelectMenu.unity
+    guid: 565a978257e9c454ba70bbc2ab6ff11f
+  - enabled: 1
+    path: Assets/PhotonBlackJack/Scene/SoloGame 1.unity
+    guid: 13b5daa573a6f5c40a7e75e5d3df7afa
+  - enabled: 1
+    path: Assets/PhotonBlackJack/Scene/SoloGame 2.unity
+    guid: d65944fd8150b6d4dbb7ff1a13553cbe
+  - enabled: 1
+    path: Assets/PhotonBlackJack/Scene/SoloGame 3.unity
+    guid: 44702710e4a71db4cac7ede67d4a617a
+  - enabled: 1
+    path: Assets/PhotonBlackJack/Scene/ConnectScene.unity
+    guid: f4d69cec8dccce149826abdaaa98f1e5
+  - enabled: 1
+    path: Assets/PhotonBlackJack/Scene/PhotonBlackJackGameScene.unity
+    guid: fb2dbc87a84952d40a5872364f968950
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

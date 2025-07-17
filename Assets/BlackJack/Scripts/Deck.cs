@@ -21,7 +21,7 @@ public class Deck
                 else if (rank == "J" || rank == "Q" || rank == "K") value = 10;
                 else value = int.Parse(rank);
 
-                cards.Add(new Card(suit, rank, value));
+                cards.Add(new Card(suit, rank));
             }
         }
     }
@@ -40,5 +40,12 @@ public class Deck
         Card cardToDeal = cards[0];
         cards.RemoveAt(0);
         return cardToDeal;
+    }
+
+    // 덱에서 카드를 제거하지 않고 맨 위의 카드를 확인하는 메서드
+    public Card Peek()
+    {
+        if (cards.Count == 0) return null;
+        return cards[0];
     }
 }
