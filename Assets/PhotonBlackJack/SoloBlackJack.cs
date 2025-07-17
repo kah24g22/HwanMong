@@ -217,7 +217,14 @@ public class SoloBlackJack : MonoBehaviour
     private void HandleTurnChanged(PlayerTurn currentPlayer)
     {
         m_gameLogic.Turn = currentPlayer;
-        turnText.text = $"{m_gameLogic.Turn}'s Turn";
+        if (currentPlayer == PlayerTurn.Player1)
+        {
+            turnText.text = "My Turn";
+        }
+        else if (currentPlayer == PlayerTurn.Player2)
+        {
+            turnText.text = "Enemy Turn";
+        }
     }
 
 
