@@ -197,6 +197,7 @@ public class SoloBlackJackLogic
                 {
                     m_player2.DecreaseLife(); // 라이프 감소 로직 추가
                     m_player2.AddItem(GetRandomItemType()); // 패배한 플레이어에게 아이템 지급
+                    Debug.Log($"[SoloBlackJackLogic] Player2 (enemy) received an item.");
                     EndGame("Player1 Wins.");
                     break;
                 }
@@ -204,6 +205,7 @@ public class SoloBlackJackLogic
                 {
                     m_player1.DecreaseLife(); // 라이프 감소 로직 추가
                     m_player1.AddItem(GetRandomItemType()); // 패배한 플레이어에게 아이템 지급
+                    Debug.Log($"[SoloBlackJackLogic] Player1 (my) received an item.");
                     EndGame("Player2 Wins.");
                     break;
                 }

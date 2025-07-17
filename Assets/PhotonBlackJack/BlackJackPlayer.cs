@@ -35,6 +35,7 @@ public class BlackJackPlayer : MonoBehaviour
 
     public void PlayerReset()
     {
+        Debug.Log($"[BlackJackPlayer] PlayerReset called for {name}. Inventory will NOT be cleared.");
         if (Hand == null)
             m_hand = new Hand();
 
@@ -43,7 +44,6 @@ public class BlackJackPlayer : MonoBehaviour
         IsTurnOn = true;
         Hand.Clear();
         IsStandDisabled = false; // 라운드 시작 시 스탠드 금지 상태 초기화
-        m_inventory.Clear(); // 플레이어 리셋 시 인벤토리 초기화
     }
 
     public void BustCheck()
@@ -81,13 +81,14 @@ public class BlackJackPlayer : MonoBehaviour
     // 아이템 추가 메서드
     public bool AddItem(ItemType item)
     {
+        Debug.Log($"[BlackJackPlayer] Attempting to add item: {item} to {name}'s inventory. Current size: {m_inventory.Count}/{MAX_INVENTORY_SIZE}");
         if (m_inventory.Count < MAX_INVENTORY_SIZE)
         {
             m_inventory.Add(item);
-            Debug.Log($"Player {name} added item: {item}. Inventory size: {m_inventory.Count}/{MAX_INVENTORY_SIZE}");
+            Debug.Log($"[BlackJackPlayer] Successfully added item: {item}. New inventory size: {m_inventory.Count}/{MAX_INVENTORY_SIZE}");
             return true;
         }
-        Debug.LogWarning($"Player {name}'s inventory is full. Cannot add item: {item}.");
+        Debug.LogWarning($"[BlackJackPlayer] Player {name}'s inventory is full. Cannot add item: {item}.");
         return false;
     }
 
@@ -102,6 +103,13 @@ public class BlackJackPlayer : MonoBehaviour
         {
             Debug.LogWarning($"Player {name} tried to remove item {item}, but it was not found in inventory.");
         }
+    }
+
+    // 인벤토리 초기화 메서드 추가
+    public void ClearInventory()
+    {
+        m_inventory.Clear();
+        Debug.Log($"Player {name}'s inventory cleared.");
     }
 
 }

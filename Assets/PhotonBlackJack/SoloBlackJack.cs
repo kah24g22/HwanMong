@@ -264,6 +264,12 @@ public class SoloBlackJack : MonoBehaviour
 
     private void UpdateItemUI()
     {
+        Debug.Log($"[SoloBlackJack] Updating Item UI for {m_myBlackJackPlayer.name}. Inventory Count: {m_myBlackJackPlayer.Inventory.Count}");
+        for (int i = 0; i < m_myBlackJackPlayer.Inventory.Count; i++)
+        {
+            Debug.Log($"[SoloBlackJack] Item at index {i}: {m_myBlackJackPlayer.Inventory[i]}");
+        }
+
         for (int i = 0; i < m_itemTexts.Length; i++)
         {
             if (i < m_myBlackJackPlayer.Inventory.Count)
