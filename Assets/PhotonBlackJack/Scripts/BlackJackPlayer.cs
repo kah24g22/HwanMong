@@ -19,6 +19,7 @@ public class BlackJackPlayer : MonoBehaviour
 
     public bool IsTurnOn;
     public Player Player;
+    public string CharacterType; // 캐릭터 타입 식별을 위한 필드 추가
 
     public bool IsBust { get { return m_isBust; } }
     public bool IsBlackJack { get { return m_isBlackJack; } }
@@ -31,6 +32,7 @@ public class BlackJackPlayer : MonoBehaviour
     {
         m_hand = new Hand();
         m_life = m_maxLife; // Awake에서 현재 라이프를 최대치로 초기화
+        OnLifeChanged?.Invoke(m_life); // 초기 라이프 설정 시 이벤트 호출
     }
 
     public void PlayerReset()
@@ -44,6 +46,7 @@ public class BlackJackPlayer : MonoBehaviour
         IsTurnOn = true;
         Hand.Clear();
         IsStandDisabled = false; // 라운드 시작 시 스탠드 금지 상태 초기화
+        OnLifeChanged?.Invoke(m_life); // 라이프 초기화 시 이벤트 호출
     }
 
     public void BustCheck()

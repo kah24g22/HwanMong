@@ -39,6 +39,8 @@ public class SoloBlackJack : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] m_itemTexts; // 아이템 이름 표시를 위한 TextMeshProUGUI 배열
     [SerializeField] private Image[] m_itemIcons; // 아이템 아이콘 표시를 위한 Image 배열
 
+    [SerializeField] private SpriteRenderer myCharacterSpriteRenderer; // MyCharacter 오브젝트의 SpriteRenderer
+
     [SerializeField] Button[] buttons;
 
     private void Awake()
@@ -82,8 +84,6 @@ public class SoloBlackJack : MonoBehaviour
         {
             cardSprites.Add(sprite.name, sprite);
         }
-
-        CharacterData.instance.SetImage();
     }
 
     private void Update()
@@ -231,6 +231,29 @@ public class SoloBlackJack : MonoBehaviour
         }
     }
 
+
+    private void UpdateMyCharacterImage(int currentLife)
+    {
+        if (myCharacterSpriteRenderer == null) return;
+
+        if (CharacterData.instance != null && !string.IsNullOrEmpty(CharacterData.instance.characterName))
+        {
+            string characterName = CharacterData.instance.characterName;
+            Sprite loadedSprite = Resources.Load<Sprite>($"Sprites/{characterName}/{currentLife}");
+            if (loadedSprite != null)
+            {
+                myCharacterSpriteRenderer.sprite = loadedSprite;
+            }
+            else
+            {
+                Debug.LogWarning($"Character sprite not found in Resources/Sprites/{characterName}/{currentLife}");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("CharacterData instance or characterName is null or empty.");
+        }
+    }
 
     void UpdateScores()
     {
